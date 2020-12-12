@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import RoundedText from '../components/RoundedText'
 import IconHome from '../imgs/Home.svg'
 import IconMoney from '../imgs/Money.svg'
 import IconShop from '../imgs/Shop.svg'
@@ -11,44 +10,26 @@ import IconCalendar from '../imgs/Calendar.svg'
 
 const NavBar = () => {
 	return (
-		<Group>
-				<WalletTxt>intraID's wallet</WalletTxt>
-				<RoundedText><CurrentMny>현재잔고</CurrentMny><br/>13 ₳</RoundedText>
-				<Move>
-					<Button><img src={IconHome} alt="home"/>홈</Button>
-					<Link to="/bank">
-						<Button><img src={IconMoney} alt="money"/>입출금 내역</Button>
-					</Link>
-					<Link to="/shop">
-						<Button><img src={IconShop} alt="shop"/>쇼핑하기</Button>
-					</Link>
-					<Link to="/events">
-						<Button><img src={IconCalendar} alt="events"/>월렛 얻기</Button>
-					</Link>
-				</Move>
-		</Group>
+		<Move>
+			<Link to="/">
+				<Button><img src={IconHome} alt="home"/></Button>
+				{/* <Button><img src={IconHome} alt="home"/>홈</Button> */}
+			</Link>
+			<Link to="/bank">
+				<Button><img src={IconMoney} alt="money"/></Button>
+				{/* <Button><img src={IconMoney} alt="money"/>입출금 내역</Button> */}
+			</Link>
+			<Link to="/shop">
+				<Button><img src={IconShop} alt="shop"/></Button>
+				{/* <Button><img src={IconShop} alt="shop"/>쇼핑하기</Button> */}
+			</Link>
+			<Link to="/events">
+				<Button><img src={IconCalendar} alt="events"/></Button>
+				{/* <Button><img src={IconCalendar} alt="events"/>월렛 얻기</Button> */}
+			</Link>
+		</Move>
 	);
 }
-
-const Group = styled.div`
-	padding-top: 4rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-`
-
-const WalletTxt = styled.div`
-	font-family: Roboto;
-	font-size: 36px;
-	font-weight: bold;
-	line-height: 42px;
-	margin-bottom: 2rem;
-`
-
-const CurrentMny = styled.div`
-	font-size: 20px;
-	text-align: left;
-`
 
 const Move = styled.div`
 	width: 100%;
@@ -69,7 +50,7 @@ Button.propTypes = {
 };
 
 const StyledButton = styled.button`
-	margin: 4rem;
+	padding: 2.5rem;
   border-radius: 1em;
 	border: none;
 	background: none;
