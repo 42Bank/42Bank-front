@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, {createGlobalStyle}  from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import TopBar from '../components/TopBar';
 import NavBar from '../components/NavBar';
 import Transanction from '../components/Transanction'
@@ -24,7 +24,7 @@ const Bank = () => (
 
 const Total = createGlobalStyle`
 body {
-	background-color: #fff;
+	margin: 0;
 }
 `
 

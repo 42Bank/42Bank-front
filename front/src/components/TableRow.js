@@ -6,27 +6,24 @@ const TableRow = ({ key, data}) => {
     const [RowData] = useState(data);
 
     return (
-        <>
-        <tr key={key}>
-					<>
+        <div key={key}>
 						{RowData.map(i =>
 							<StyledData>
 								<StyledDate>{i.date}</StyledDate>
 								<StyledContent>{i.contents}</StyledContent>
 								<StyledPrize prize={i.prize}>{i.prize} ₳</StyledPrize>
 							</StyledData>)}
-					</>
-        </tr>
-        </>
+        </div>
     )
 };
 
-const StyledData = styled.div`
+const StyledData = styled.li`
+	list-style: none;
 	display: flex;
 	justify-content: space-between;
 	// border-top: solid 1px #E5E5E5;
 	border-bottom: solid 1px #E5E5E5;
-	padding: 0.5rem 0;
+	padding: 0.5rem 4rem;
 `
 
 const StyledDate = styled.div`

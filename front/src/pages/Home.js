@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, {createGlobalStyle} from 'styled-components';
+import styled from 'styled-components';
 import NavBar from '../components/NavBar'
 import RoundedText from '../components/RoundedText'
 import Logo from '../imgs/Logo.png'
@@ -8,7 +8,6 @@ import ProfileImg from '../imgs/ProfileImg.png'
 
 const Home = () => (
 		<>
-		<Total/>
 		<AboveBar>
 			<StyledLogoLeft>
 				<img src={Logo} alt="logo"/>
@@ -27,12 +26,6 @@ const Home = () => (
 		</Group>
 		</>
 );
-
-const Total = createGlobalStyle`
-body {
-	background-color: #fff;
-}
-`
 
 const AboveBar = styled.div`
 	display: flex;

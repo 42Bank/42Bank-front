@@ -15,5 +15,6 @@ const StyledText = styled.div`
 	font-size: 40px;
 	color: white;
 	text-align: center;
+	box-sizing: border-box;
 `
 export default RoundedText;

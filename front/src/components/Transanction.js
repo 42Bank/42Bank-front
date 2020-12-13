@@ -17,7 +17,7 @@ const Transanction = (props) => {
 			{/* <div>0910 rush eval 8A</div> */}
 			<StyledTable>
 					{tableData.length !== 0 && (
-					<table>
+					<Styledul>
 							{/* <thead>
 							<tr>
 								 {headerMeta.map(i=><th>{i}</th>)}
@@ -29,19 +29,24 @@ const Transanction = (props) => {
 							}
 							)}
 							</div>
-
-					</table>
+					</Styledul>
 					)}
 			</StyledTable>
 			</>
 	);
 }
 
+const Styledul = styled.ul`
+	width: 100%;
+	margin: 0;
+	padding: 0;
+`
+
 const StyledTable = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 2rem;
+	padding: 2rem 0;
 	font-size: 150%;
 `
 

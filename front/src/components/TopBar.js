@@ -12,5 +12,6 @@ const StyledBar = styled.div`
 	text-align: center;
 	background: #ffffff;
 	padding: 1rem;
+	box-sizing: border-box;
 `
 export default TopBar;
