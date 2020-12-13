@@ -16,6 +16,7 @@ const StyledEvents = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	// background-color: #58B7BA;
 `
 
 export default Events

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {createGlobalStyle}  from 'styled-components';
 import TopBar from '../components/TopBar';
 import NavBar from '../components/NavBar';
 import Transanction from '../components/Transanction'
@@ -7,6 +7,7 @@ import RoundedText from '../components/RoundedText';
 
 const Bank = () => (
 		<>
+			<Total/>
 			<TopBar>입출금 내역</TopBar>
 			<StyledBank>
 				<RoundedText home="0">
@@ -20,6 +21,12 @@ const Bank = () => (
 			</StyledBank>
 		</>
 );
+
+const Total = createGlobalStyle`
+body {
+	background-color: #fff;
+}
+`
 
 const StyledBank = styled.div`
 	display: flex;

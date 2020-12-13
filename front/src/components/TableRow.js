@@ -35,7 +35,7 @@ const StyledDate = styled.div`
 
 const StyledContent = styled.div`
 	color: black;
-	padding: 0 10rem;
+	padding: 0 15rem;
 `
 
 const StyledPrize = styled.div`
