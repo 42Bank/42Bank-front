@@ -4,10 +4,12 @@ import Home from './pages/Home';
 import Bank from './pages/Bank';
 import Shop from './pages/Shop';
 import Events from './pages/Events';
+import {createGlobalStyle} from 'styled-components';
 
 const App = () => (
   <BrowserRouter>
     <div className= "App">
+      <Total/>
       <Route exact path="/" component={Home} />
       <Switch>
         <Route path="/bank" component={Bank} />
@@ -19,4 +21,9 @@ const App = () => (
   </BrowserRouter>
 )
 
+const Total = createGlobalStyle`
+  &::-webkit-scrollbar{
+    display:none
+  }
+`
 export default App;
