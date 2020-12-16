@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import PropTypes from 'prop-types';
 import Bg from '../imgs/42bg.png'
@@ -9,34 +9,41 @@ const Login = () => (
 		<Background/>
 		<StyledLogin>
 			<LoginBox/>
-			<StyledLogo><img src={Logo} alt=""/></StyledLogo>
-			<LoginField/>
-			<SubmitBtn>SIGN IN</SubmitBtn>
+			<Wrapper>
+				<StyledLogo><img src={Logo} alt=""/></StyledLogo>
+				<SubmitBtn>SIGN IN</SubmitBtn>
+			</Wrapper>
 		</StyledLogin>
 	</>
 );
 
+const Background = createGlobalStyle`
+	body{
+		background-image: url(${Bg});
+	}
+`
+const StyledLogin = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`
 const LoginBox = styled.div`
-	padding-top: 6rem;
+	padding-top: 13em;
 `
-const LoginField = () => (
-	<>
-		<StyledField placeholder="ID" />
-		<StyledField placeholder="Password" />
-	</>
-);
-
-const StyledField = styled.input`
-	width: 40%;
-	height: 58px;
-	background: #EFEDED;
-	border: 2px solid #58B7BA;
-	box-sizing: border-box;
+const Wrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	background-color: #EFEDED;
 	border-radius: 10px;
-	font-size: 18px;
-	margin-bottom: 5px;
+	border-color: transparent;
 `
-
+const StyledLogo = styled.div`
+	display: flex;
+`
 const SubmitBtn = ({ children }) => (
 	<StyledButton>{children}</StyledButton>
 );
@@ -46,7 +53,7 @@ SubmitBtn.propTypes = {
 };
 
 const StyledButton = styled.button`
-	width: 40%;
+	width: 100%;
 	height: 58px;
 	background-color: #58B7BA;
 	color: #fff;
@@ -55,25 +62,9 @@ const StyledButton = styled.button`
 		background: gray;
 	}
 	box-sizing: border-box;
-	border-radius: 10px;
+	border-radius: 0 0 10px 10px;
 	font-size: 20px;
+	border-color: transparent;
 `;
-
-const Background = createGlobalStyle`
-	body{
-		background-image: url(${Bg});
-	}
-`
-
-const StyledLogin = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-`
-
-const StyledLogo = styled.div`
-	display: flex;
-`
 
 export default Login;
