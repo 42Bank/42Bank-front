@@ -11,7 +11,7 @@ const Login = () => (
 			<LoginBox/>
 			<StyledLogo><img src={Logo} alt=""/></StyledLogo>
 			<LoginField/>
-			<SubmitBtn>Submit</SubmitBtn>
+			<SubmitBtn>SIGN IN</SubmitBtn>
 		</StyledLogin>
 	</>
 );
@@ -49,6 +49,7 @@ const StyledButton = styled.button`
 	width: 40%;
 	height: 58px;
 	background-color: #58B7BA;
+	color: #fff;
 	&: hover {
 		cursor: pointer;
 		background: gray;
