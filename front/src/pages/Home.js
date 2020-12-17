@@ -25,12 +25,43 @@ const Parsing = () => {
 	return info;
 };
 
+const Posting = (codevalue) => {
+	// useEffect(() => {
+	// 	const postCall = async() =>	{axios.post('http://localhost:8000/api/Code/', {code: codevalue.code})
+	// .then(function (response){
+	// 	console.log(response.data.result)
+	// 	(response.data.result === 'success')? console.log('success!!!'): console.log('fail')})
+	// .catch(function (error){
+	// 	console.log(error);
+	// });}
+	// 	postCall();
+	// });
+		axios.post('http://localhost:8000/home/', {code: codevalue.code})
+		.then(function (response){
+			console.log(response.data.result)
+			(response.data.result === 'success')? console.log('success!!!'): console.log('fail')})
+		.catch(function (error){
+			console.log(error);
+		});
+}
+
 const Home = () => {
 	const codeurl = window.location.search;
 	const codevalue = qs.parse(codeurl,{
 		ignoreQueryPrefix: true
 	});
-	console.log(codevalue);
+	console.log(codevalue.code);
+	if (codevalue)
+	{
+		Posting(codevalue);
+		// axios.post('http://localhost:8000/api/Code/', {code: codevalue.code})
+		// .then(function (response){
+		// 	console.log(response.data.result)
+		// 	(response.data.result === 'success')? console.log('success!!!'): console.log('fail')})
+		// .catch(function (error){
+		// 	console.log(error);
+		// });
+	}
 	Parsing();
 		return (
 		<>
