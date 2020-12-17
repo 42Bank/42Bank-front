@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar'
 import RoundedText from '../components/RoundedText'
 import Logo from '../imgs/Logo.png'
 import ProfileImg from '../imgs/ProfileImg.png'
-
+import qs from 'qs';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 axios.defaults.xsrfCookiename = "csrftoken";
@@ -26,6 +26,11 @@ const Parsing = () => {
 };
 
 const Home = () => {
+	const codeurl = window.location.search;
+	const codevalue = qs.parse(codeurl,{
+		ignoreQueryPrefix: true
+	});
+	console.log(codevalue);
 	Parsing();
 		return (
 		<>
