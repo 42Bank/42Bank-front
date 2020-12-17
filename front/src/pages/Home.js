@@ -5,8 +5,29 @@ import RoundedText from '../components/RoundedText'
 import Logo from '../imgs/Logo.png'
 import ProfileImg from '../imgs/ProfileImg.png'
 
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+axios.defaults.xsrfCookiename = "csrftoken";
+axios.defaults.xsrfHeadername = "X-CSRFToken";
 
-const Home = () => (
+const Parsing = () => {
+	const [info, setInfo] = useState();
+	useEffect(() => {
+		const apiCall = async() => {
+			const data = await axios.get('http://localhost:8000/api/User/');
+			console.log(data);
+			const temp = data;
+			setInfo(temp);
+		};
+		apiCall();
+	}, []);
+	if (!info) return null;
+	return info;
+};
+
+const Home = () => {
+	Parsing();
+		return (
 		<>
 		<AboveBar>
 			<StyledLogoLeft>
@@ -25,7 +46,8 @@ const Home = () => (
 				<NavBar/>
 		</Group>
 		</>
-);
+		);
+	};
 
 const AboveBar = styled.div`
 	display: flex;
