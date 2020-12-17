@@ -36,7 +36,7 @@ const Posting = (codevalue) => {
 	// });}
 	// 	postCall();
 	// });
-		axios.post('http://localhost:8000/home/', {code: codevalue.code})
+		axios.post('http://localhost:8000/crawler/', {code: codevalue.code})
 		.then(function (response){
 			console.log(response.data.result)
 			(response.data.result === 'success')? console.log('success!!!'): console.log('fail')})
