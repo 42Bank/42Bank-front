@@ -56,7 +56,7 @@ const StyledButton = styled.button`
 	background: none;
 	&: hover {
 		cursor: pointer;
-		background: gray;
+		background: #EFEDED;
 	}
 `;
 
