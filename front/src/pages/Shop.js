@@ -61,6 +61,10 @@ const StyledProducts = styled.li`
 	border-radius: 20px;
 	margin: 2rem 0rem;
 	list-style: none;
+	&: hover {
+		cursor: pointer;
+		background: #EFEDED;
+	}
 `
 
 const StyledImg = styled.div`
