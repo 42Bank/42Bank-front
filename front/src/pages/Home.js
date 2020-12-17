@@ -26,23 +26,20 @@ const Parsing = () => {
 };
 
 const Posting = (codevalue) => {
-	// useEffect(() => {
-	// 	const postCall = async() =>	{axios.post('http://localhost:8000/api/Code/', {code: codevalue.code})
-	// .then(function (response){
-	// 	console.log(response.data.result)
-	// 	(response.data.result === 'success')? console.log('success!!!'): console.log('fail')})
-	// .catch(function (error){
-	// 	console.log(error);
-	// });}
-	// 	postCall();
-	// });
-		axios.post('http://localhost:8000/crawler/', {code: codevalue.code})
+	const [user, setUser] = useState();
+	useEffect(() => {
+		const postCall = async() =>	{axios.post('http://localhost:8000/crawler/', {code: codevalue.code})
 		.then(function (response){
-			console.log(response.data.result)
+			// console.log(response.data)
+			setUser(response.data);
 			(response.data.result === 'success')? console.log('success!!!'): console.log('fail')})
 		.catch(function (error){
 			console.log(error);
-		});
+		});}
+		postCall();
+	}, [codevalue.code]);
+	if (!user) return null;
+	return user;
 }
 
 const Home = () => {
@@ -53,14 +50,8 @@ const Home = () => {
 	console.log(codevalue.code);
 	if (codevalue)
 	{
-		Posting(codevalue);
-		// axios.post('http://localhost:8000/api/Code/', {code: codevalue.code})
-		// .then(function (response){
-		// 	console.log(response.data.result)
-		// 	(response.data.result === 'success')? console.log('success!!!'): console.log('fail')})
-		// .catch(function (error){
-		// 	console.log(error);
-		// });
+		const intra_id = Posting(codevalue);
+		console.log(intra_id);
 	}
 	Parsing();
 		return (
