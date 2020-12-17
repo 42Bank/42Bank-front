@@ -11,7 +11,7 @@ import IconCalendar from '../imgs/Calendar.svg'
 const NavBar = () => {
 	return (
 		<Move>
-			<Link to="/">
+			<Link to="/main">
 				<Button><img src={IconHome} alt="home"/></Button>
 				{/* <Button><img src={IconHome} alt="home"/>홈</Button> */}
 			</Link>
