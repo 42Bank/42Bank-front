@@ -6,30 +6,30 @@ import NavBar from '../components/NavBar';
 import Transanction from '../components/Transanction'
 import RoundedText from '../components/RoundedText';
 
-const Parsing = () => {
-	const [info, setInfo] = useState();
-	useEffect(() => {
-		const apiCall = async() => {
-			const data = await axios.get('http://localhost:8000/api/Order/');
-			const temp = data;
-			setInfo(temp);
-		};
-		apiCall();
-	}, []);
-	if (!info) return null;
-	return info;
-};
+// const Parsing = () => {
+// 	const [info, setInfo] = useState();
+// 	useEffect(() => {
+// 		const apiCall = async() => {
+// 			const data = await axios.get('http://localhost:8000/api/Order/');
+// 			const temp = data;
+// 			setInfo(temp);
+// 		};
+// 		apiCall();
+// 	}, []);
+// 	if (!info) return null;
+// 	return info;
+// };
 
-const get_info = (transac) => {
-	const tempInfo = transac.data.filter(data =>
-	data.intra_id === window.sessionStorage.getItem('intra_id'));
-	return tempInfo;
-};
+// const get_info = (transac) => {
+// 	const tempInfo = transac.data.filter(data =>
+// 	data.intra_id === window.sessionStorage.getItem('intra_id'));
+// 	return tempInfo;
+// };
 
 const Bank = () => {
-	const transac = Parsing();
-	const tInfo = transac ? get_info(transac): null;
-	console.log(tInfo);
+	// const transac = Parsing();
+	// const tInfo = transac ? get_info(transac): null;
+	// console.log(tInfo);
 	return (
 			<>
 				<Total/>
@@ -37,7 +37,7 @@ const Bank = () => {
 				<StyledBank>
 					<RoundedText home="0">
 						<CurrentMny>현재잔고</CurrentMny>
-						<br/>13 ₳
+						<br/>{window.sessionStorage.getItem('wallet')} ₳
 					</RoundedText>
 					<TransanctionBlock>
 						<Transanction></Transanction>

@@ -34,7 +34,6 @@ const Posting = (codevalue) => {
 		.then(function (response){
 			// console.log(response.data)
 			setUser(response.data);
-			window.sessionStorage.setItem('intra_id', response.data);
 			(response.data.result === 'success')? console.log('success!!!'): console.log('fail :(')})
 		.catch(function (error){
 			console.log(error);
@@ -49,6 +48,8 @@ const GetWallet = (retPost, retObject) => {
 	const tempInfo = retObject.data.filter(data =>
 		data.intra_id === retPost);
 	const wallet = tempInfo[0].cur_wallet;
+	window.sessionStorage.setItem('intra_id', tempInfo[0].intra_id);
+	window.sessionStorage.setItem('wallet', wallet);
 	window.sessionStorage.setItem('img', tempInfo[0].photo);
 	if (!wallet) return null;
 	return wallet;
@@ -62,9 +63,9 @@ const Home = () => {
 	console.log(codevalue.code);
 	const retPost = Posting(codevalue);
 	const retObject = Parsing();
-
 	const wallet = retPost && retObject ? GetWallet(retPost, retObject) : null;
-	window.sessionStorage.setItem('wallet', 18);
+	// retPost && retObject ? GetWallet(retPost, retObject) : null;
+
 	console.log("wallet : " + wallet);
 
 	return (
@@ -73,10 +74,10 @@ const Home = () => {
 		<StyledLogoLeft>
 			<img src={Logo} alt="logo"/>
 		</StyledLogoLeft>
-		<Profile>
-			<UserPhoto url={window.sessionStorage.getItem('img')}></UserPhoto>
+		{/* <Profile>
+			<UserPhoto url={window.sessionStorage.getItem('img')}></UserPhoto> */}
 			{/* <img src={window.sessionStorage.getItem('img')} alt="profile"/> */}
-		</Profile>
+		{/* </Profile> */}
 	</AboveBar>
 	<Group>
 		<WalletTxt>{window.sessionStorage.getItem('intra_id')} 's wallet</WalletTxt>
