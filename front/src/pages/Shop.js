@@ -21,31 +21,52 @@ const Parsing = () => {
 
 const Shop = () => {
 	const product = Parsing();
+	// const pList = product.map((p, i) => (
+
+	// ));
 	return (
 		<>
 			<Total/>
 			<TopBar>42 월렛 상점</TopBar>
 			<StyledShop>
+			{/* {product && product.data.map((v) => (
 				<ShopList>
-					<ShopPhoto url={product && product.data[0].photo}></ShopPhoto>
-					<StyledTxt>{product && product.data[0].name}<br/>{product &&product.data[0].price} ₳</StyledTxt>
+					<ShopPhoto url={v.photo}></ShopPhoto>
+					<StyledTxt>{v.name}<br/>{v.price} ₳</StyledTxt>
 				</ShopList>
+			))}; */}
 				<ShopList>
 					<ShopPhoto url={product && product.data[1].photo}></ShopPhoto>
 					<StyledTxt>{product && product.data[1].name}<br/>{product &&product.data[1].price} ₳</StyledTxt>
 				</ShopList>
 				<ShopList>
+					<ShopPhoto url={product && product.data[6].photo}></ShopPhoto>
+					<StyledTxt>{product && product.data[6].name}<br/>{product &&product.data[6].price} ₳</StyledTxt>
+				</ShopList>
+				<ShopList>
+					<ShopPhoto url={product && product.data[7].photo}></ShopPhoto>
+					<StyledTxt>{product && product.data[7].name}<br/>{product &&product.data[7].price} ₳</StyledTxt>
+				</ShopList>
+				<ShopList>
+					<ShopPhoto url={product && product.data[5].photo}></ShopPhoto>
+					<StyledTxt>{product && product.data[5].name}<br/>{product &&product.data[5].price} ₳</StyledTxt>
+				</ShopList>
+				<ShopList>
+					<ShopPhoto url={product && product.data[4].photo}></ShopPhoto>
+					<StyledTxt>{product && product.data[4].name}<br/>{product &&product.data[4].price} ₳</StyledTxt>
+				</ShopList>
+				<ShopList>
+					<ShopPhoto url={product && product.data[0].photo}></ShopPhoto>
+					<StyledTxt>{product && product.data[0].name}<br/>{product &&product.data[0].price} ₳</StyledTxt>
+				</ShopList>
+				<ShopList>
+					<ShopPhoto url={product && product.data[3].photo}></ShopPhoto>
+					<StyledTxt>{product && product.data[3].name}<br/>{product &&product.data[3].price} ₳</StyledTxt>
+				</ShopList>
+				<ShopList>
 					<ShopPhoto url={product && product.data[2].photo}></ShopPhoto>
 					<StyledTxt>{product && product.data[2].name}<br/>{product &&product.data[2].price} ₳</StyledTxt>
 				</ShopList>
-				<StyledProducts></StyledProducts>
-				<StyledProducts>3</StyledProducts>
-				<StyledProducts>4</StyledProducts>
-				<StyledProducts>5</StyledProducts>
-				<StyledProducts>6</StyledProducts>
-				<StyledProducts>7</StyledProducts>
-				<StyledProducts>8</StyledProducts>
-				<StyledProducts>9</StyledProducts>
 			</StyledShop>
 			<NavBar/>
 		</>
