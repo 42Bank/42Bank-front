@@ -15,7 +15,6 @@ const Parsing = () => {
 	useEffect(() => {
 		const apiCall = async() => {
 			const data = await axios.get('http://localhost:8000/api/User/');
-			console.log(data);
 			const temp = data;
 			setInfo(temp);
 		};
@@ -32,7 +31,7 @@ const Posting = (codevalue) => {
 		.then(function (response){
 			// console.log(response.data)
 			setUser(response.data);
-			(response.data.result === 'success')? console.log('success!!!'): console.log('fail')})
+			(response.data.result === 'success')? console.log('success!!!'): console.log('fail :(')})
 		.catch(function (error){
 			console.log(error);
 		});}
@@ -42,39 +41,47 @@ const Posting = (codevalue) => {
 	return user;
 }
 
+const GetWallet = (retPost, retObject) => {
+	const tempInfo = retObject.data.filter(data => 
+		data.intra_id === retPost);
+	const wallet = tempInfo[0].cur_wallet;
+	if (!wallet) return null;
+	return wallet;
+}
+
 const Home = () => {
 	const codeurl = window.location.search;
 	const codevalue = qs.parse(codeurl,{
 		ignoreQueryPrefix: true
 	});
 	console.log(codevalue.code);
-	if (codevalue)
-	{
-		const intra_id = Posting(codevalue);
-		console.log(intra_id);
-	}
-	Parsing();
-		return (
-		<>
-		<AboveBar>
-			<StyledLogoLeft>
-				<img src={Logo} alt="logo"/>
-			</StyledLogoLeft>
-			<StyledLogoRight>
-				<img src={ProfileImg} alt="profile"/>
-			</StyledLogoRight>
-		</AboveBar>
-		<Group>
-				<WalletTxt>intraID's wallet</WalletTxt>
-				<RoundedText home="1">
-					<CurrentMny>현재잔고</CurrentMny>
-					<br/>13 ₳
-				</RoundedText>
-				<NavBar/>
-		</Group>
-		</>
-		);
-	};
+	const retPost = Posting(codevalue);
+	const retObject = Parsing();
+	
+	const wallet = retPost && retObject ? GetWallet(retPost, retObject) : null;
+	console.log("wallet : " + wallet);
+
+	return (
+	<>
+	<AboveBar>
+		<StyledLogoLeft>
+			<img src={Logo} alt="logo"/>
+		</StyledLogoLeft>
+		<StyledLogoRight>
+			<img src={ProfileImg} alt="profile"/>
+		</StyledLogoRight>
+	</AboveBar>
+	<Group>
+		<WalletTxt>{retPost} 's wallet</WalletTxt>
+			<RoundedText home="1">
+				<CurrentMny>현재잔고</CurrentMny>
+				<br/>{wallet} ₳
+			</RoundedText>
+			<NavBar/>
+	</Group>
+	</>
+	);
+};
 
 const AboveBar = styled.div`
 	display: flex;
