@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled, {createGlobalStyle} from 'styled-components';
 import TopBar from '../components/TopBar';
 import NavBar from '../components/NavBar';
 
-const Events = () => (
-	<>
-		<Total/>
-		<StyledEvents>
-			<TopBar>월렛 얻기</TopBar>
-			<NavBar/>
-			<EventList>
-				<EventDate>2020.12.17</EventDate>
-				<EventTxt>해커톤</EventTxt>
-				<EventWallet>🤑 42 ₳ 🤑</EventWallet>
-			</EventList>
-		</StyledEvents>
-	</>
-);
+const Parsing = () => {
+	const [info, setInfo] = useState();
+	useEffect(() => {
+		const apiCall = async() => {
+			const data = await axios.get('http://localhost:8000/api/Notice/');
+			const temp = data;
+			setInfo(temp);
+		};
+		apiCall();
+	}, []);
+	if (!info) return null;
+	return info;
+};
+
+const Events = () => {
+	const event = Parsing();
+	console.log(event);
+	return (
+		<>
+			<Total/>
+			<StyledEvents>
+				<TopBar>월렛 얻기</TopBar>
+				<NavBar/>
+				<EventList>
+					<EventDate>2020.12.17</EventDate>
+					<EventTxt>{event && event.data[0].title}</EventTxt>
+					<EventWallet>🤑 {event && event.data[0].price} ₳ 🤑</EventWallet>
+				</EventList>
+			</StyledEvents>
+		</>
+	);
+};
 
 const Total = createGlobalStyle`
 body {

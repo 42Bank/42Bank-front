@@ -42,7 +42,7 @@ const Posting = (codevalue) => {
 }
 
 const GetWallet = (retPost, retObject) => {
-	const tempInfo = retObject.data.filter(data => 
+	const tempInfo = retObject.data.filter(data =>
 		data.intra_id === retPost);
 	const wallet = tempInfo[0].cur_wallet;
 	if (!wallet) return null;
@@ -57,7 +57,7 @@ const Home = () => {
 	console.log(codevalue.code);
 	const retPost = Posting(codevalue);
 	const retObject = Parsing();
-	
+
 	const wallet = retPost && retObject ? GetWallet(retPost, retObject) : null;
 	console.log("wallet : " + wallet);
 
