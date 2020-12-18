@@ -7,8 +7,11 @@ import ProfileImg from '../imgs/ProfileImg.png'
 import qs from 'qs';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+
 axios.defaults.xsrfCookiename = "csrftoken";
 axios.defaults.xsrfHeadername = "X-CSRFToken";
+
 
 const Parsing = () => {
 	const [info, setInfo] = useState();
@@ -46,6 +49,7 @@ const GetWallet = (retPost, retObject) => {
 	const tempInfo = retObject.data.filter(data =>
 		data.intra_id === retPost);
 	const wallet = tempInfo[0].cur_wallet;
+	window.sessionStorage.setItem('img', tempInfo[0].photo);
 	if (!wallet) return null;
 	return wallet;
 }
@@ -69,9 +73,10 @@ const Home = () => {
 		<StyledLogoLeft>
 			<img src={Logo} alt="logo"/>
 		</StyledLogoLeft>
-		<StyledLogoRight>
-			<img src={ProfileImg} alt="profile"/>
-		</StyledLogoRight>
+		<Profile>
+			<UserPhoto url={window.sessionStorage.getItem('img')}></UserPhoto>
+			{/* <img src={window.sessionStorage.getItem('img')} alt="profile"/> */}
+		</Profile>
 	</AboveBar>
 	<Group>
 		<WalletTxt>{window.sessionStorage.getItem('intra_id')} 's wallet</WalletTxt>
@@ -96,6 +101,35 @@ const StyledLogoRight = styled.div`
 	margin-top: 2%;
 	margin-right: 3%;
 `
+
+const Profile = ({ children }) => (
+	<StyledImg>{children}</StyledImg>
+);
+
+Profile.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+const StyledImg = styled.button`
+	padding: 2.5rem;
+  border-radius: 1em;
+	border: none;
+	background: none;
+`
+
+const UserPhoto = ({url}) => (
+	<StyledUser photo={url}></StyledUser>
+);
+
+const StyledUser = styled.div`
+	width: 100%;
+	height: 60%;
+	border-radius: 20px 20px 0 0;
+	background-position: center;
+	background-size: cover;
+	background-image: ${({photo}) => `url(${photo})`};
+`
+
 const Group = styled.div`
 	padding-top: 2rem;
 	display: flex;

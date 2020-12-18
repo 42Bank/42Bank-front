@@ -20,9 +20,16 @@ const Parsing = () => {
 	return info;
 };
 
+const get_info = (transac) => {
+	const tempInfo = transac.data.filter(data =>
+	data.intra_id === window.sessionStorage.getItem('intra_id'));
+	return tempInfo;
+};
+
 const Bank = () => {
 	const transac = Parsing();
-	console.log(transac);
+	const tInfo = transac ? get_info(transac): null;
+	console.log(tInfo);
 	return (
 			<>
 				<Total/>
