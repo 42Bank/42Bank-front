@@ -31,6 +31,7 @@ const Posting = (codevalue) => {
 		.then(function (response){
 			// console.log(response.data)
 			setUser(response.data);
+			window.sessionStorage.setItem('intra_id', response.data);
 			(response.data.result === 'success')? console.log('success!!!'): console.log('fail :(')})
 		.catch(function (error){
 			console.log(error);
@@ -59,6 +60,7 @@ const Home = () => {
 	const retObject = Parsing();
 
 	const wallet = retPost && retObject ? GetWallet(retPost, retObject) : null;
+	window.sessionStorage.setItem('wallet', 18);
 	console.log("wallet : " + wallet);
 
 	return (
@@ -72,10 +74,10 @@ const Home = () => {
 		</StyledLogoRight>
 	</AboveBar>
 	<Group>
-		<WalletTxt>{retPost} 's wallet</WalletTxt>
+		<WalletTxt>{window.sessionStorage.getItem('intra_id')} 's wallet</WalletTxt>
 			<RoundedText home="1">
 				<CurrentMny>현재잔고</CurrentMny>
-				<br/>{wallet} ₳
+				<br/>{window.sessionStorage.getItem('wallet')} ₳
 			</RoundedText>
 			<NavBar/>
 	</Group>

@@ -1,26 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled, {createGlobalStyle} from 'styled-components';
 import TopBar from '../components/TopBar';
 import NavBar from '../components/NavBar';
 import Transanction from '../components/Transanction'
 import RoundedText from '../components/RoundedText';
 
-const Bank = () => (
-		<>
-			<Total/>
-			<TopBar>입출금 내역</TopBar>
-			<StyledBank>
-				<RoundedText home="0">
-					<CurrentMny>현재잔고</CurrentMny>
-					<br/>13 ₳
-				</RoundedText>
-				<TransanctionBlock>
-					<Transanction></Transanction>
-				</TransanctionBlock>
-				<NavBar/>
-			</StyledBank>
-		</>
-);
+const Parsing = () => {
+	const [info, setInfo] = useState();
+	useEffect(() => {
+		const apiCall = async() => {
+			const data = await axios.get('http://localhost:8000/api/Order/');
+			const temp = data;
+			setInfo(temp);
+		};
+		apiCall();
+	}, []);
+	if (!info) return null;
+	return info;
+};
+
+const Bank = () => {
+	const transac = Parsing();
+	console.log(transac);
+	return (
+			<>
+				<Total/>
+				<TopBar>입출금 내역</TopBar>
+				<StyledBank>
+					<RoundedText home="0">
+						<CurrentMny>현재잔고</CurrentMny>
+						<br/>13 ₳
+					</RoundedText>
+					<TransanctionBlock>
+						<Transanction></Transanction>
+					</TransanctionBlock>
+					<NavBar/>
+				</StyledBank>
+			</>
+		);
+	};
 
 const Total = createGlobalStyle`
 body {
